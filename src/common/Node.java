@@ -1,11 +1,13 @@
+package common;
+
 import java.util.List;
 
 /**
  * Created by Michael on 2/25/2016.
  */
 public class Node {
-    int data;
-    Node next;
+    public int data;
+    public Node next;
 
     Node() {
         next = null;
@@ -35,9 +37,10 @@ public class Node {
 
     public static void printll(Node ll) {
         while(ll != null) {
-            System.out.print(ll.data + ' ');
+            System.out.print(String.format("%d ", ll.data));
             ll = ll.next;
         }
+        System.out.println("");
     }
 }
 
