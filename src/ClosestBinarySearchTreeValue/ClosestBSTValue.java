@@ -1,7 +1,12 @@
 package ClosestBinarySearchTreeValue;
 
 /**
- * Created by Michael on 3/12/16.
+ * Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target
+ *
+ * Given target value is a floating point.
+ * You are guaranteed to have only one unique value in the BST that is closest to the target.
+ *
+ * https://leetcode.com/problems/closest-binary-search-tree-value/
  */
 
 // Definition for a binary tree node.
