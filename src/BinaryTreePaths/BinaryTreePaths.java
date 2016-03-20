@@ -30,8 +30,8 @@ public class BinaryTreePaths {
     }
     public static List<String> binaryTreePaths(TreeNode root) {
         List<String> paths = new ArrayList<>();
-        Stack<TreeNode> pathSoFar = new Stack<>();
-        binaryTreePaths(root, paths, pathSoFar);
+//        StringBuilder pathSoFar = new StringBuilder();
+        binaryTreePaths(root, paths, "");
         return paths;
     }
 
@@ -39,7 +39,7 @@ public class BinaryTreePaths {
      * Then every time we get to a leaf, add the running path to the list of answer paths, and then backtrack by
      * popping the running path stack.
      */
-    public static void binaryTreePaths(TreeNode root, List<String> paths, Stack<TreeNode> pathSoFar) {
+    public static void binaryTreePaths(TreeNode root, List<String> paths, String pathSoFar) {
         // depth first search recursively, but use an iterative approach instead of expression approach
 
         // base case, no tree, so empty list of paths
@@ -48,7 +48,7 @@ public class BinaryTreePaths {
         }
 
         // add current node to the running path stack
-        pathSoFar.push(root);
+        pathSoFar += (root.val) + "->";
 
         // search left
         if(root.left != null) {
@@ -60,10 +60,10 @@ public class BinaryTreePaths {
         }
         // if leaf node, add the path to the answer list
         else if(root.right == null && root.left == null)
-            paths.add(pathToString(pathSoFar));
+            paths.add(pathSoFar.substring(0, pathSoFar.length()-2));
 
         // update the path so far by backtracking
-        pathSoFar.pop();
+        pathSoFar = pathSoFar.substring(0, pathSoFar.length()-2);
 
     }
 
