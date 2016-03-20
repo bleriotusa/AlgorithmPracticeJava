@@ -4,6 +4,7 @@ import common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 /**
@@ -21,34 +22,50 @@ import java.util.stream.Collectors;
 public class BinaryTreePaths {
     public static void main(String[] args) {
         TreeNode tree = new TreeNode(1, new TreeNode(2, null, new TreeNode(5)), new TreeNode(3));
+        TreeNode tree2 = new TreeNode(1, new TreeNode(2), null);
+        TreeNode oneNode = new TreeNode(1);
         for(String string: binaryTreePaths(tree))
             System.out.println(string);
 
     }
     public static List<String> binaryTreePaths(TreeNode root) {
-        // depth first search. expression is: left list + right list
+        // iterative depth first search. keep the path up to
         List<String> paths = new ArrayList<>();
-        if(root == null) {
-            paths.add("");
-            return paths;
-        }
+        Stack<TreeNode> toExplore = new Stack<>();
+        Stack<TreeNode> pathSoFar = new Stack<>();
 
-        String pathStart = root.val + "->";
-        if(root.left != null) {
-            for (String path : binaryTreePaths(root.left))
-                paths.add(pathStart + path);
+        toExplore.push(root);
+
+        while(!toExplore.isEmpty()) {
+            TreeNode v = toExplore.pop();
+            // process v here
+            pathSoFar.push(v);
+
+            // if internal node, continue the search
+            if(v.right != null)
+                toExplore.push(v.right);
+            if(v.left != null)
+                toExplore.push(v.left);
+
+            // if leaf node, add full path to the answer list
+            if(v.left == null && v.right == null){
+                paths.add(pathToString(pathSoFar));
+                pathSoFar.pop();
+            }
         }
-        else
-            paths.add("" + root.val);
-        if(root.right != null) {
-            for (String path : binaryTreePaths(root.right))
-                paths.add(pathStart + path);
-        }
-        else if(!paths.contains("" + root.val))
-            paths.add("" + root.val);
-//        paths.addAll(binaryTreePaths(root.left).stream().map(node -> pathStart + node).collect(Collectors.toList()));
-//        paths.addAll(binaryTreePaths(root.right).stream().map(node -> pathStart + node).collect(Collectors.toList()));
 
         return paths;
+    }
+
+    static String pathToString(Stack<TreeNode> nodes) {
+        if(nodes.empty())
+            return "";
+
+        String path = "";
+        for(TreeNode node : nodes) {
+            path += node.val + "->";
+        }
+
+        return path.substring(0, path.length()-2);
     }
 }
