@@ -29,32 +29,42 @@ public class BinaryTreePaths {
 
     }
     public static List<String> binaryTreePaths(TreeNode root) {
-        // iterative depth first search. keep the path up to
         List<String> paths = new ArrayList<>();
-        Stack<TreeNode> toExplore = new Stack<>();
         Stack<TreeNode> pathSoFar = new Stack<>();
+        binaryTreePaths(root, paths, pathSoFar);
+        return paths;
+    }
 
-        toExplore.push(root);
+    /** Idea: Depth first search recursively, keeping track of the "running path", or the path up to the current node.
+     * Then every time we get to a leaf, add the running path to the list of answer paths, and then backtrack by
+     * popping the running path stack.
+     */
+    public static void binaryTreePaths(TreeNode root, List<String> paths, Stack<TreeNode> pathSoFar) {
+        // depth first search recursively, but use an iterative approach instead of expression approach
 
-        while(!toExplore.isEmpty()) {
-            TreeNode v = toExplore.pop();
-            // process v here
-            pathSoFar.push(v);
-
-            // if internal node, continue the search
-            if(v.right != null)
-                toExplore.push(v.right);
-            if(v.left != null)
-                toExplore.push(v.left);
-
-            // if leaf node, add full path to the answer list
-            if(v.left == null && v.right == null){
-                paths.add(pathToString(pathSoFar));
-                pathSoFar.pop();
-            }
+        // base case, no tree, so empty list of paths
+        if(root == null) {
+            return;
         }
 
-        return paths;
+        // add current node to the running path stack
+        pathSoFar.push(root);
+
+        // search left
+        if(root.left != null) {
+            binaryTreePaths(root.left, paths, pathSoFar);
+        }
+        // search right
+        if(root.right != null) {
+            binaryTreePaths(root.right, paths, pathSoFar);
+        }
+        // if leaf node, add the path to the answer list
+        else if(root.right == null && root.left == null)
+            paths.add(pathToString(pathSoFar));
+
+        // update the path so far by backtracking
+        pathSoFar.pop();
+
     }
 
     static String pathToString(Stack<TreeNode> nodes) {
@@ -65,7 +75,6 @@ public class BinaryTreePaths {
         for(TreeNode node : nodes) {
             path += node.val + "->";
         }
-
         return path.substring(0, path.length()-2);
     }
 }
