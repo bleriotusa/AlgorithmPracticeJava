@@ -22,16 +22,16 @@ import java.util.stream.Collectors;
 public class BinaryTreePaths {
     public static void main(String[] args) {
         TreeNode tree = new TreeNode(1, new TreeNode(2, null, new TreeNode(5)), new TreeNode(3));
-        TreeNode tree2 = new TreeNode(1, new TreeNode(2), null);
+        TreeNode tree2 = new TreeNode(1, new TreeNode(2), new TreeNode(3));
         TreeNode oneNode = new TreeNode(1);
-        for(String string: binaryTreePaths(tree))
+        for(String string: binaryTreePaths(tree2))
             System.out.println(string);
 
     }
     public static List<String> binaryTreePaths(TreeNode root) {
         List<String> paths = new ArrayList<>();
-//        StringBuilder pathSoFar = new StringBuilder();
-        binaryTreePaths(root, paths, "");
+        StringBuilder pathSoFar = new StringBuilder();
+        binaryTreePaths(root, paths, pathSoFar);
         return paths;
     }
 
@@ -39,7 +39,7 @@ public class BinaryTreePaths {
      * Then every time we get to a leaf, add the running path to the list of answer paths, and then backtrack by
      * popping the running path stack.
      */
-    public static void binaryTreePaths(TreeNode root, List<String> paths, String pathSoFar) {
+    public static void binaryTreePaths(TreeNode root, List<String> paths, StringBuilder pathSoFar) {
         // depth first search recursively, but use an iterative approach instead of expression approach
 
         // base case, no tree, so empty list of paths
@@ -48,23 +48,22 @@ public class BinaryTreePaths {
         }
 
         // add current node to the running path stack
-        pathSoFar += (root.val) + "->";
+        pathSoFar.append(root.val + "->");
 
         // search left
-        if(root.left != null) {
+        if(root.left != null)
             binaryTreePaths(root.left, paths, pathSoFar);
-        }
+
         // search right
-        if(root.right != null) {
+        if(root.right != null)
             binaryTreePaths(root.right, paths, pathSoFar);
-        }
+
         // if leaf node, add the path to the answer list
         else if(root.right == null && root.left == null)
             paths.add(pathSoFar.substring(0, pathSoFar.length()-2));
 
-        // update the path so far by backtracking
-        pathSoFar = pathSoFar.substring(0, pathSoFar.length()-2);
-
+        // update the path so far by backtracking 3 (removing these symbols: ->#)
+        pathSoFar.setLength(pathSoFar.length()-3);
     }
 
     static String pathToString(Stack<TreeNode> nodes) {
