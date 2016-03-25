@@ -24,7 +24,7 @@ public class BinaryTreePaths {
         TreeNode tree = new TreeNode(1, new TreeNode(2, null, new TreeNode(5)), new TreeNode(3));
         TreeNode tree2 = new TreeNode(1, new TreeNode(2), new TreeNode(3));
         TreeNode oneNode = new TreeNode(1);
-        for(String string: binaryTreePaths(tree2))
+        for(String string: binaryTreePaths(tree))
             System.out.println(string);
 
     }
@@ -64,16 +64,5 @@ public class BinaryTreePaths {
 
         // update the path so far by backtracking 3 (removing these symbols: ->#)
         pathSoFar.setLength(pathSoFar.length()-3);
-    }
-
-    static String pathToString(Stack<TreeNode> nodes) {
-        if(nodes.empty())
-            return "";
-
-        String path = "";
-        for(TreeNode node : nodes) {
-            path += node.val + "->";
-        }
-        return path.substring(0, path.length()-2);
     }
 }
