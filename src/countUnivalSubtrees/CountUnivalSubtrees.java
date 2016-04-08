@@ -9,24 +9,30 @@ import java.util.Stack;
  */
 public class CountUnivalSubtrees {
 
+
+    /**
+     * Ask every node if it as a subtree is a UnivalSubtree and add them up
+     * @param root
+     * @return
+     */
     static protected int countUnivalSubtrees(TreeNode root) {
         if (root == null)
             return 0;
 
         int rootVal = isUnivalTree(root) ? 1 : 0;
-
-        return rootVal + countUnivalSubtrees(root.left) + countUnivalSubtrees(root.right);
+        return countUnivalSubtrees(root.left) + countUnivalSubtrees(root.right) + rootVal;
     }
 
 
     static boolean isUnivalTree(TreeNode root) {
-        if (root == null || (root.left == null && root.right == null))
+        if (root == null )
             return false;
 
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
         TreeNode current;
 
+        /* Depth first search, and compute if the node is equal to the root. If any are not, this is not a UnivalTree */
         while (!stack.empty()) {
             current = stack.pop();
 

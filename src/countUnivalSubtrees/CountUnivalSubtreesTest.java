@@ -24,17 +24,17 @@ public class CountUnivalSubtreesTest {
     @Test
     public void countUnivalSubtreesTest() throws Exception {
         assertEquals(0, countUnivalSubtrees(tree0));
-        assertEquals(0, countUnivalSubtrees(tree1));
-        assertEquals(1, countUnivalSubtrees(tree2_1));
-        assertEquals(2, countUnivalSubtrees(tree3_1));
-        assertEquals(1, countUnivalSubtrees(tree4));
+        assertEquals(1, countUnivalSubtrees(tree1));
+        assertEquals(2, countUnivalSubtrees(tree2_1));
+        assertEquals(3, countUnivalSubtrees(tree3_1));
+        assertEquals(3, countUnivalSubtrees(tree4));
 
     }
 
     @Test
     public void isUnivalTreeTest() throws Exception {
         assertFalse(isUnivalTree(tree0));
-        assertFalse(isUnivalTree(tree1));
+        assertTrue(isUnivalTree(tree1));
         assertFalse(isUnivalTree(tree2));
         assertTrue(isUnivalTree(tree2_1));
         assertFalse(isUnivalTree(tree3));
