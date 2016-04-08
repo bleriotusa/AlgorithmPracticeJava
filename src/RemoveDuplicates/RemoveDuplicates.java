@@ -1,8 +1,7 @@
-package ReverseLinkedList;
+package RemoveDuplicates;
 
 import common.Node;
 
-import java.nio.channels.Pipe;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

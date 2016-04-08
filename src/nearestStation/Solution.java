@@ -1,4 +1,4 @@
-package nearestStation;
+package NearestStation;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

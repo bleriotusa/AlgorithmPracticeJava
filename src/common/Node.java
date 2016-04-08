@@ -1,5 +1,6 @@
 package common;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,22 +10,26 @@ public class Node {
     public int data;
     public Node next;
 
-    Node() {
+    public Node() {
         next = null;
     }
 
-    Node(int data) {
+    public Node(int data) {
         this.data = data;
         this.next = null;
     }
 
-    Node(Node next) {
+    public Node(Node next) {
         this.next = next;
     }
 
-    Node(int data, Node next) {
+    public Node(int data, Node next) {
         this.data = data;
         this.next = next;
+    }
+
+    public static Node arrayToll(Integer[] array) {
+        return listToll(Arrays.asList(array));
     }
 
     public static Node listToll(List<Integer> list) {
