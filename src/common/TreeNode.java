@@ -20,4 +20,11 @@ public class TreeNode {
         this.left = left;
         this.right = right;
     }
+
+    public TreeNode(int x, TreeNode left) {
+        val = x;
+        this.left = left;
+        this.right = right;
+    }
+
 }
