@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  * Created by Michael on 4/7/2016.
  */
 public class CountUnivalSubtreesTest {
+    CountUnivalSubtrees counter;
     TreeNode tree0;
     TreeNode tree1;
     TreeNode tree2;
@@ -23,27 +24,29 @@ public class CountUnivalSubtreesTest {
 
     @Test
     public void countUnivalSubtreesTest() throws Exception {
-        assertEquals(0, countUnivalSubtrees(tree0));
-        assertEquals(1, countUnivalSubtrees(tree1));
-        assertEquals(2, countUnivalSubtrees(tree2_1));
-        assertEquals(3, countUnivalSubtrees(tree3_1));
-        assertEquals(3, countUnivalSubtrees(tree4));
-
+        long startTime = System.nanoTime();
+        assertEquals(0, counter.countUnivalSubtrees(tree0));
+        assertEquals(1, counter.countUnivalSubtrees(tree1));
+        assertEquals(2, counter.countUnivalSubtrees(tree2_1));
+        assertEquals(3, counter.countUnivalSubtrees(tree3_1));
+        assertEquals(3, counter.countUnivalSubtrees(tree4));
+        System.out.println(System.nanoTime()-startTime);
     }
 
     @Test
     public void isUnivalTreeTest() throws Exception {
-        assertFalse(isUnivalTree(tree0));
-        assertTrue(isUnivalTree(tree1));
-        assertFalse(isUnivalTree(tree2));
-        assertTrue(isUnivalTree(tree2_1));
-        assertFalse(isUnivalTree(tree3));
-        assertTrue(isUnivalTree(tree3_1));
-        assertFalse(isUnivalTree(tree4));
+        assertFalse(counter.isUnivalTree(tree0));
+        assertTrue(counter.isUnivalTree(tree1));
+        assertFalse(counter.isUnivalTree(tree2));
+        assertTrue(counter.isUnivalTree(tree2_1));
+        assertFalse(counter.isUnivalTree(tree3));
+        assertTrue(counter.isUnivalTree(tree3_1));
+        assertFalse(counter.isUnivalTree(tree4));
     }
 
     @Before
     public void setUp() throws Exception {
+        counter = new CountUnivalSubtrees();
         tree4 = new TreeNode(25, new TreeNode(50, new TreeNode(50)), new TreeNode(50));
         tree1 = new TreeNode(50);
         tree0 = null;
