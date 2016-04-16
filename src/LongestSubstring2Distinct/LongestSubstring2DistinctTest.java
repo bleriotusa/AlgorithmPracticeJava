@@ -13,6 +13,8 @@ public class LongestSubstring2DistinctTest {
     String test2 = "aaaaaebeaaaaaaaa";
     String test3 = "eceba";
     String test4 = "abcabcabc";
+    String test5 = "abccbbcccaaacaca";
+    String test6 = "ababcbcbaaabbdef";
     LongestSubstring2Distinct tester;
 
     @Before
@@ -26,9 +28,8 @@ public class LongestSubstring2DistinctTest {
         assertEquals(9, tester.lengthOfLongestSubstringTwoDistinct(test2));
         assertEquals(3, tester.lengthOfLongestSubstringTwoDistinct(test3));
         assertEquals(2, tester.lengthOfLongestSubstringTwoDistinct(test4));
-
-
-
+        assertEquals(10, tester.lengthOfLongestSubstringTwoDistinct(test5));
+        assertEquals(6, tester.lengthOfLongestSubstringTwoDistinct(test6));
 
     }
 
