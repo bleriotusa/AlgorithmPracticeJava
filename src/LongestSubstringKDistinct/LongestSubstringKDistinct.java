@@ -1,4 +1,4 @@
-package LongestSubstring2Distinct;
+package LongestSubstringKDistinct;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ import java.util.*;
  * <p>
  * T is "ece" which its length is 3.
  */
-public class LongestSubstring2Distinct {
+public class LongestSubstringKDistinct {
     Map<Character, Integer> map;
     Set<Character> queue;
     char previous;
@@ -31,9 +31,13 @@ public class LongestSubstring2Distinct {
      * This way, we can implement a psuedo sliding window without having to backtrack the processing character.
      *
      * @param s: string to find the longest substring for
-     * @return length of the longest substring that has only two unique characters.
+     * @param k: number of distinct characters allowed in the substring
+     * @return length of the longest substring that has only k unique characters.
      */
-    public int lengthOfLongestSubstringTwoDistinct(String s) {
+    public int lengthOfLongestSubstringKDistinct(String s, int k) {
+        if(k == 0)
+            return 0;
+
         map = new LinkedHashMap<>();
         queue = new LinkedHashSet<>();
         int current = 0;
@@ -54,18 +58,18 @@ public class LongestSubstring2Distinct {
 
             // Two cases if we don't already have this character:
             // 1. If we have room, add this to the list of characters and update it's running total to 1
-            // 2. Otherwise, reset total count to number of consecutive previous character we have,
-            //      take the first (earliest) character in the queue out of the map,
+            // 2. Otherwise, reset total count to sum of character's consecutives without oldest character,
+            //      take the oldest character in the queue out of the map,
             //      and add the newest character in with a running total of 1
             else {
-                if (map.size() < 2) {
+                if (map.size() < k) {
                     map.put(c, 1);
                     current++;
                     max = (current > max) ? current : max;
                 } else {
-                    current = map.get(previous) + 1;
-                    max = (current > max) ? current : max;
                     map.remove(queue.iterator().next());
+                    current =  map.values().stream().mapToInt(Integer::intValue).sum() + 1;
+                    max = (current > max) ? current : max;
                     map.put(c, 1);
 
                 }
@@ -79,10 +83,11 @@ public class LongestSubstring2Distinct {
 
             queue.add(c);
 
-            if (queue.size() > 2)
+            if (queue.size() > k)
                 queue.remove(queue.iterator().next());
         }
 
         return max;
     }
 }
+
