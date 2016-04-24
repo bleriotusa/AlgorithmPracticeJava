@@ -17,6 +17,9 @@ public class LongestSubstringKDistinctTest {
     String test4 = "abcabcabc";
     String test5 = "abccbbcccaaacaca";
     String test6 = "ababcbcbaaabbdef";
+    String test7 = "JAvjjdaurNNMa8A";
+    String test8 = "dabcabcabceabc";
+    String test9 = "a@b$5!a8alskj234jasdf*()@$&%&#FJAvjjdaurNNMa8ASDF-0321jf?>{}L:fh";
     LongestSubstringKDistinct tester;
 
     @Before
@@ -44,6 +47,9 @@ public class LongestSubstringKDistinctTest {
         assertEquals(test4.length(), tester.lengthOfLongestSubstringKDistinct(test4, 3));
         assertEquals(test5.length(), tester.lengthOfLongestSubstringKDistinct(test5, 3));
         assertEquals(test6.length() - 3, tester.lengthOfLongestSubstringKDistinct(test6, 3));
+        assertEquals(13, tester.lengthOfLongestSubstringKDistinct(test8, 4));
+
+        assertEquals(14, tester.lengthOfLongestSubstringKDistinct(test7, 10));
 
     }
 

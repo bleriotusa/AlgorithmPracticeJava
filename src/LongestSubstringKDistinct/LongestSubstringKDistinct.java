@@ -3,7 +3,7 @@ package LongestSubstringKDistinct;
 import java.util.*;
 
 /**
- * Created by Michael J Chen on 4/10/16.
+ * Created by Michael J Chen on 4/10/16. **UNFINISHED**
  * <p>
  * <p>
  * Given a string, find the length of the longest substring T that contains at most 2 distinct characters.
