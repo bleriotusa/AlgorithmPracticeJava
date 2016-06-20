@@ -7,32 +7,18 @@ import java.util.Arrays;
  * Created by Michael on 6/13/2016.
  */
 public class PlusOne {
-    public static int[] plusOne(int[] digits) {
-
-        if (digits[digits.length - 1] == 9)
-            digits = carry(digits);
-        else
-            digits[digits.length - 1]++;
-
-
-        return digits;
-    }
 
     /**
-     * Shifts digits to the right one and adds a 1 to the front
+     * Algorithm:
+     * 1. Iterate from right (least significant digit) to left, if need to carry.
+     * 2. Condition to carry is if current digit is 9 before adding 1.
+     * 3. If most significant digit also needs a carry, we need to shift all digits to the right and insert a 1 as MSD
      *
-     * @param digits Array to shift digits in
+     * @param digits is the array representation of integer to add the number 1 to.
+     * @return array representation of integer after adding the number 1.
      */
-    public static int[] shiftArray(int[] digits) {
-        int[] newArray = Arrays.copyOf(digits, digits.length + 1);
-        for (int i = digits.length - 1; i >= 0; i--) {
-            newArray[i + 1] = digits[i];
-        }
-        newArray[0] = 1;
-        return newArray;
-    }
+    public static int[] plusOne(int[] digits) {
 
-    public static int[] carry(int[] digits) {
         int curr = 0;
         boolean carry = true;
         // iterate through the list in reverse order
@@ -54,4 +40,19 @@ public class PlusOne {
         }
         return digits;
     }
+
+    /**
+     * Shifts digits to the right one and adds a 1 to the front
+     *
+     * @param digits Array to shift digits in
+     */
+    public static int[] shiftArray(int[] digits) {
+        int[] newArray = Arrays.copyOf(digits, digits.length + 1);
+        for (int i = digits.length - 1; i >= 0; i--) {
+            newArray[i + 1] = digits[i];
+        }
+        newArray[0] = 1;
+        return newArray;
+    }
+
 }

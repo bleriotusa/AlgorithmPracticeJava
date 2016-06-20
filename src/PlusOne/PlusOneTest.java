@@ -23,7 +23,9 @@ public class PlusOneTest {
         int[] sol2 = {1,3,0};
         int[] x3 = {9,9,9};
         int[] sol3 = {1,0,0,0};
-        problemSolutions.addAll(Arrays.asList(x1, sol1, x2, sol2, x3, sol3));
+        int[] x4 = {9,8,9};
+        int[] sol4 = {9,9,0};
+        problemSolutions.addAll(Arrays.asList(x1, sol1, x2, sol2, x3, sol3, x4, sol4));
 
         // run through all the problems
         for(int j = 0; j < problemSolutions.size(); j+=2) {
