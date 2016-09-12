@@ -14,71 +14,57 @@ public class LongestAbsoluteFilePath {
 
     /**
      * Dynamic Programming approach using stack for each level (indent)
-     * @param input
-     * @return
+     * Uses a running total length that resets whenever we go up a directory level, using the stack.
+     *
+     * @param input: String that represents a directory hierarchy, including files.
+     * @return Number of characters that the longest file path has
      */
     public int lengthLongestPath(String input) {
+        stack = new Stack<>();
         int maxLength = 0;
         int currLength = 0;
-        int currentTabCount = 0;
-        int currentReturnCount = 0;
+        int currentLevel;
+        int previousLevel;
+        String directoryStripped;
 
-        char current;
 
+        /**
+         * 1. Split chunks into folders and files
+         * 2. Use a stack to keep track of directory levels and the length of that word.
+         *      Could use array, but since each directory can only go down one level at a time,
+         *      we can use a stack.
+         * 3. For every word,
+         *      add it's length to the directory level
+         *      add it's length to the current length
+         *      update maximum length
+         */
+        for (String directory : input.split("\n")) {
 
-        for(int i = 0; i < input.length(); i++) {
-            current = input.charAt(i);
-
-            // if it turns out we are at a return,
-            //      don't update current length
-            //      update return and tab counts
-            //      if wasn't a file, don't update count
-            //      check if we're at root level (if so, reset current length)
-            if(isReturn(current)) {
-                // increase return count
-                currentReturnCount++;
-
-                int currPos = i;
-                boolean hadTab = true;
-                // do a lookahead to see if any tabs
-                //      make sure string has room for a tab
-                while(i < input.length()-1 && hadTab) {
-                    hadTab = false;
-                    char next = input.charAt(currPos+1);
-                    currPos += 2;
-
-                    if(isTab(next)) {
-                        currentTabCount++;
-                        hadTab = true;
-                    }
-                }
-
-                // check if we're back to root level
-                // if so, reset current length
-                if(currentTabCount == currentReturnCount)
-                    currLength = 0;
-
-                if(currLength > maxLength ) {
-                    maxLength = currLength;
-                }
+            // pop the amount of levels we went down, if any,
+            // and subtract those levels from current count.
+            //  + 1 pop to reset the count for that directory level
+            currentLevel = directory.lastIndexOf('\t') + 2;
+            previousLevel = stack.size();
+            for (int i = 0; i < previousLevel - currentLevel + 1; i++) {
+                if (!stack.isEmpty())
+                    currLength -= stack.pop();
             }
 
-            else {
-                currLength++;
-            }
+            // push the current level on stack.
+            //  used to keep track of length on this directory level, in case we need to backtrack.
+            //  this helps us to update the "current length" accurately
+            directoryStripped = directory.replaceAll("[\t]+", "/");
+            stack.push(directoryStripped.length());
 
-            maxLength = (currLength > maxLength)? currLength : maxLength;
+            // add the current directory length to the running total
+            currLength += directoryStripped.length();
+
+            // if the running total is a file, and is greater than current max, update the maximum length
+            maxLength = (currLength > maxLength && directoryStripped.contains(".")) ? currLength : maxLength;
+
         }
 
         return maxLength;
-    }
-
-    public boolean isReturn(char character) {
-        return character == '\n';
-    }
-
-    public boolean isTab(char character) {
-        return character == '\t';
     }
 
 }
