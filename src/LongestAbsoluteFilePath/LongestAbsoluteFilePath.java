@@ -3,14 +3,9 @@ package LongestAbsoluteFilePath;
 import java.util.Stack;
 
 /**
- * Created by Michael on 9/6/2016.
+ * Created by Michael Chen (bleriotusa@gmail.com) on 9/6/2016.
  */
 public class LongestAbsoluteFilePath {
-    Stack<Integer> stack;
-
-    public LongestAbsoluteFilePath() {
-        stack = new Stack<>();
-    }
 
     /**
      * Dynamic Programming approach using stack for each level (indent)
@@ -20,15 +15,14 @@ public class LongestAbsoluteFilePath {
      * @return Number of characters that the longest file path has
      */
     public int lengthLongestPath(String input) {
-        stack = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
         int maxLength = 0;
         int currLength = 0;
         int currentLevel;
         int previousLevel;
         String directoryStripped;
 
-
-        /**
+        /*
          * 1. Split chunks into folders and files
          * 2. Use a stack to keep track of directory levels and the length of that word.
          *      Could use array, but since each directory can only go down one level at a time,
@@ -66,5 +60,4 @@ public class LongestAbsoluteFilePath {
 
         return maxLength;
     }
-
 }
