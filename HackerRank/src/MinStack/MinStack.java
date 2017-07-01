@@ -28,6 +28,11 @@ public class MinStack {
     Stack<Integer> stack;
     Stack<Integer> minStack;
 
+    /**
+     * Minstack works by keeping a separate stack of all the minimum values as they are introduced.
+     * Add: if it is a new or current (to support duplicate mins) min, add to min stack
+     * Pop: if value popped is equal to min, pop it from min stack as well
+     */
     public MinStack() {
         stack = new Stack<>();
         minStack = new Stack<>();

@@ -1,11 +1,9 @@
 package PlusOne;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 import static org.junit.Assert.*;
 

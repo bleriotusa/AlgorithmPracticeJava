@@ -1,9 +1,6 @@
 package countUnivalSubtrees;
 
 import common.TreeNode;
-
-import java.util.HashMap;
-import java.util.Stack;
 //32743
 
 /**

@@ -1,10 +1,6 @@
 package ReverseLinkedList;
 import common.Node;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Created by Michael J Chen bleriotusa@gmail.com on 3/24/16.
  */

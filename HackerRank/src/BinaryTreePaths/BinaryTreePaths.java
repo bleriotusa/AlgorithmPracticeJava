@@ -4,8 +4,6 @@ import common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
-import java.util.stream.Collectors;
 
 /**
  * Given a binary tree, return all root-to-leaf paths.

@@ -4,7 +4,6 @@ import common.TreeNode;
 import org.junit.Before;
 import org.junit.Test;
 
-import static countUnivalSubtrees.CountUnivalSubtrees.*;
 import static org.junit.Assert.*;
 
 /**

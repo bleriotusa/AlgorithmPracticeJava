@@ -1,6 +1,5 @@
 package LongestSubstringKDistinct;
 
-import LongestSubstringKDistinct.LongestSubstringKDistinct;
 import org.junit.Before;
 import org.junit.Test;
 
