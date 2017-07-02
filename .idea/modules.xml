@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HackerRank.iml" filepath="$PROJECT_DIR$/HackerRank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HackerRank/HackerRank.iml" filepath="$PROJECT_DIR$/HackerRank/HackerRank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaEPI/JavaEPI.iml" filepath="$PROJECT_DIR$/JavaEPI/JavaEPI.iml" />
     </modules>
   </component>
 </project>
