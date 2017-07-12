@@ -30,7 +30,7 @@ class SortAlmostSortedArray {
             if (sequence.hasNext())
                 heap.add(sequence.next());
 
-            System.out.println(Arrays.toString(heap.toArray()));
+//            System.out.println(Arrays.toString(heap.toArray()));
 
             // Once the heap is filled to size k, that means any number that was k away from it's sorted
             // position should be back into sorted position once it's pulled out of the heap.
